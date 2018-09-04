@@ -2,7 +2,6 @@
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
-
 # Define your WIN_COMBINATIONS constant
 WIN_COMBINATIONS = [
   [0, 1, 2],
@@ -16,25 +15,18 @@ WIN_COMBINATIONS = [
 ]
 
 def won? board
-  # board_empty = false;
-  #
-  # board.each do |cell|
-  #   if cell == "" || cell == " "
-  #     board_empty = true
-  #   end
-  # end
-
   if board.all?{|cell| cell == "" || cell == " "}
     false
   else
     row_win = nil
     WIN_COMBINATIONS.each do |win_combination|
-      if (board[win_combination[0]] == board[win_combination[1]] &&
-        board[win_combination[0]] == board[win_combination[2]] &&
-        board[win_combination[0]] == 'X') ||
-        (board[win_combination[0]] == board[win_combination[1]] &&
-          board[win_combination[0]] == board[win_combination[2]] &&
-          board[win_combination[0]] == 'O')
+      if win_combination.all?{|cell| board[cell] == 'X'} || win_combination.all?{|cell| board[cell] == 'O'}
+      # if (board[win_combination[0]] == board[win_combination[1]] &&
+      #   board[win_combination[0]] == board[win_combination[2]] &&
+      #   board[win_combination[0]] == 'X') ||
+      #   (board[win_combination[0]] == board[win_combination[1]] &&
+      #     board[win_combination[0]] == board[win_combination[2]] &&
+      #     board[win_combination[0]] == 'O')
         row_win = win_combination
       end
     end
